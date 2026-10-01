@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ============================================================
+     LIGHT / WHITE THEME PALETTE
+     ============================================================ */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --bg-tertiary: #F1F5F9;
+  
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FAFCFF;
+  --bg-card-alt: #F8FAFC;
+  
+  --border-subtle: #E2E8F0;
+  --border-strong: #CBD5E1;
+  --border-focus: #16A34A;
+
+  /* Primary Brand Accent: Parrot Green (restored to vibrant green) */
+  --parrot-green: #16A34A;
+  --parrot-green-hover: #15803D;
+  --parrot-green-light: #F0FDF4;
+  --parrot-green-border: #BBF7D0;
+  --parrot-green-text: #15803D;
+  --shadow-parrot: 0 4px 14px rgba(22, 163, 74, 0.2);
+
+  /* Primary Blue specifically for the Top Navigation Line */
+  --nav-line-blue: #2563EB;
+  --nav-line-blue-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+
+  /* Secondary Accent: TradeLearn Pink (used selectively) */
+  --tradelearn-pink: #E11D48;
+  --tradelearn-pink-hover: #BE123C;
+  --tradelearn-pink-light: #FFF1F2;
+  --tradelearn-pink-border: #FECDD3;
+  --tradelearn-pink-text: #BE123C;
+
+  /* High Contrast Typography */
+  --text-primary: #0F172A;     /* Deep slate - maximum contrast */
+  --text-secondary: #334155;   /* Slate 700 - rich body copy */
+  --text-muted: #64748B;       /* Slate 500 - captions and labels */
+  --text-dim: #94A3B8;         /* Slate 400 - placeholders */
+
+  /* Neutral Surface Shadows */
+  --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.05), 0 4px 16px rgba(15, 23, 42, 0.03);
+  --card-shadow-hover: 0 4px 6px rgba(15, 23, 42, 0.05), 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   SOLID BLUE NAVIGATION LINE (AT MEDIUM PACE)
+   Animates ONCE in solid blue upon navigation,
+   duration ~0.85s (medium pace), then stops and hides when idle.
+   ============================================================ */
+.nav-line-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5px;
+  z-index: 9999;
+  pointer-events: none;
+  background: transparent;
+  overflow: hidden;
+}
+
+.nav-line-bar {
+  height: 100%;
+  background-color: var(--nav-line-blue);
+  width: 0%;
+  opacity: 0;
+}
+
+.nav-line-bar.nav-line-animating {
+  animation: blueNavTransition 0.85s cubic-bezier(0.25, 1, 0.35, 1) forwards;
+}
+
+@keyframes blueNavTransition {
+  0% {
+    width: 0%;
+    opacity: 1;
+  }
+  65% {
+    width: 85%;
+    opacity: 1;
+  }
+  90% {
+    width: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+/* Custom Scrollbar for clean white theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Container */
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Modern Fintech Cards on Light/White Surface */
+.sports-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--card-shadow);
+}
+
+.sports-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-1.5px);
+}
+
+.sports-card-glow-volt {
+  border-color: var(--parrot-green-border);
+}
+.sports-card-glow-volt:hover {
+  border-color: var(--parrot-green);
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.12);
+}
+
+.sports-card-glow-cyan:hover {
+  border-color: #0284C7;
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.12);
+}
+
+.sports-card-glow-magenta {
+  border-color: var(--tradelearn-pink-border);
+}
+.sports-card-glow-magenta:hover {
+  border-color: var(--tradelearn-pink);
+  box-shadow: 0 6px 20px rgba(225, 29, 72, 0.12);
+}
+
+/* ============================================================
+   BUTTONS: PARROT GREEN PRIMARY & REFINED OUTLINES
+   ============================================================ */
+.btn-volt, .btn-parrot {
+  background: var(--parrot-green);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1px solid #15803D;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.18s ease;
+  box-shadow: var(--shadow-parrot);
+}
+
+.btn-volt:hover, .btn-parrot:hover {
+  background: var(--parrot-green-hover);
+  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-cyan {
+  background: #0F172A;
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1px solid #0F172A;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.18s ease;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+}
+
+.btn-cyan:hover {
+  background: #1E293B;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-pink {
+  background: var(--tradelearn-pink);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1px solid #BE123C;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.18s ease;
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.2);
+}
+
+.btn-pink:hover {
+  background: var(--tradelearn-pink-hover);
+  box-shadow: 0 6px 18px rgba(225, 29, 72, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: #FFFFFF;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 9px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.18s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--parrot-green);
+  color: var(--parrot-green);
+  background: var(--parrot-green-light);
+}
+
+/* ============================================================
+   PROVENANCE ORIGIN BADGES ON LIGHT THEME
+   ============================================================ */
+.badge-origin {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2.5px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.badge-contract {
+  background: #F0F9FF;
+  color: #0369A1;
+  border: 1px solid #BAE6FD;
+}
+
+.badge-user {
+  background: #F5F3FF;
+  color: #6D28D9;
+  border: 1px solid #DDD6FE;
+}
+
+.badge-calculated {
+  background: var(--parrot-green-light);
+  color: var(--parrot-green-text);
+  border: 1px solid var(--parrot-green-border);
+}
+
+/* TradeLearn Pink Accent Badge */
+.badge-pink {
+  background: var(--tradelearn-pink-light);
+  color: var(--tradelearn-pink-text);
+  border: 1px solid var(--tradelearn-pink-border);
+}
+
+/* Sports Pill Accent */
+.sports-pill {
+  display: inline-block;
+  transform: skew(-6deg);
+  padding: 3px 10px;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  border-radius: 4px;
+}
+.sports-pill span {
+  display: inline-block;
+  transform: skew(6deg);
+}
+
+/* Numbers & Metrics */
+.metric-number {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+/* Form Controls for Light Theme */
+.form-input {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  transition: all 0.18s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--parrot-green);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}
+
+.form-input::placeholder {
+  color: var(--text-dim);
+}
+
+/* ============================================================
+   NOTICEBRIDGE HERO PINS & RESPONSIVENESS
+   ============================================================ */
+.hero-pins-container {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .hero-pins-container {
+    display: none !important;
+  }
+}
+
+
+
